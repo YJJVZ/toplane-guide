@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOPLANE PRO GUIDE</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -562,8 +561,7 @@ var DATA={
     {name:'Galio',strengths:['Anti-AP extreme','Taunt CC','Global R','Roam frequent']},
     {name:'Lissandra',strengths:['Freeze+R auto-win','CC massif','Safe trading','Anti-dive']},
     {name:'Olaf',strengths:['Imparable sous R','Early tres fort','Anti-CC tank']},
-    {name:'Renekton',strengths:['Lane bully early','Dash + W','Furie rapide','Bonne init']},
-    {name:'Lulu',strengths:['Hypercarry support','Polymorph CC','Shield + speed','Safe laning']}
+    {name:'Renekton',strengths:['Lane bully early','Dash + W','Furie rapide','Bonne init']}
   ]},
   brawler:{label:'BRAWLERS',color:'var(--cat-brawler)',champions:[
     {name:'Jax',strengths:['Late game imbattable','Counter-strike E','Splitpush menace','1v2 potentiel']},
@@ -961,22 +959,13 @@ renderAll();
 // REVIEW SYSTEM
 // ════════════════════════════════════════
 var RS_KEY = 'toplane_review_v2';
-var DEFAULT_ERRORS = [
-  {id:'sharp',     label:'Pas sharp'},
-  {id:'autopush',  label:'Autopush'},
-  {id:'ragepush',  label:'Ragepush'},
-  {id:'chat',      label:'Chat'},
-  {id:'lategame',  label:'Late-game int'},
-  {id:'flash',     label:'Flash dans le vide'},
-  {id:'intearly',  label:'Int / Dive early'},
-  {id:'autopilot', label:'Trop group / Auto pilot'},
-];
+var DEFAULT_ERRORS = [];
 
-function loadRS(){ try{var r=localStorage.getItem(RS_KEY);if(r)return JSON.parse(r);}catch(e){}return{errors:DEFAULT_ERRORS.map(function(e){return{id:e.id,label:e.label};}),sessions:[]};}
+function loadRS(){ try{var r=localStorage.getItem(RS_KEY);if(r)return JSON.parse(r);}catch(e){}return{errors:[],sessions:[]};}
 function saveRS(rs){ try{localStorage.setItem(RS_KEY,JSON.stringify(rs));}catch(e){} }
 
 var RS = loadRS();
-if(!RS.errors||!RS.errors.length) RS.errors=DEFAULT_ERRORS.map(function(e){return{id:e.id,label:e.label};});
+if(!RS.errors) RS.errors=[];
 if(!RS.sessions) RS.sessions=[];
 
 var checked={};
